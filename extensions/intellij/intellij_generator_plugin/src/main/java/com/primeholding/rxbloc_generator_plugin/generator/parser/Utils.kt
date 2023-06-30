@@ -340,8 +340,9 @@ class Utils {
             var result = ""
             if (importLine.contains("..")) {
 
-                val testPath = file.parent.path.replace("${appFolder.path}${File.separator}lib${File.separator}", "")
-                    .replace("\\", "/").split("/")
+                val testPath = file.parent.path.replace("\\", "/")
+                    .replace("${appFolder.path}/lib/", "")
+                    .split("/")
                 val countDots = importLine.split("..").size - 1
                 var theMiddlePath = ""
                 for (i in countDots until testPath.size) {
@@ -363,11 +364,11 @@ class Utils {
 
                         if (indexEnd != -1) {
                             result = "import 'package:${appFolder.name}/${
-                                file.path.replace(
-                                    "${appFolder.path}${File.separator}lib${File.separator}",
+                                file.path.replace("\\", "/").replace(
+                                    "${appFolder.path}/lib/",
                                     ""
                                 ).replace(file.name, importLine.substring(indexStart + 1, indexEnd))
-                            }';".replace("\\", "/")
+                            }';"
                         }
                     }
                 }

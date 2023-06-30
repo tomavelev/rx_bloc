@@ -228,7 +228,7 @@ $newRoute""".trimIndent()
     fun makeSubPart(featureSubDirectory: VirtualFile?, name: String, project: Project): String {
         var subPart = ""
         featureSubDirectory?.let { featureSubFolder ->
-            val libPath = "${project.basePath}${File.separator}lib"
+            val libPath = "${project.basePath}/lib"
             subPart = featureSubFolder.path.replace(libPath, "")
                 .replace("\\", "/").replace("/feature_${name.toLowerSnakeCase()}", "")
         }
